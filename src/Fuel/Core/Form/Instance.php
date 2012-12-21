@@ -621,9 +621,7 @@ class Form_Instance
 	 */
 	public function prep_value($value)
 	{
-		$value = \Security::htmlentities($value, ENT_QUOTES);
-
-		return $value;
+		return htmlentities($value, ENT_QUOTES);
 	}
 
 	/**
