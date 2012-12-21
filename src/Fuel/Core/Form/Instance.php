@@ -161,7 +161,7 @@ class Form_Instance
 	 */
 	public function fieldset_open($attributes = array(), $legend = null)
 	{
-		$fieldset_open = '<fieldset ' . array_to_attr($attributes) . ' >';
+		$fieldset_open = '<fieldset ' . Html::array_to_attr($attributes) . ' >';
 
 		! is_null($legend) and $attributes['legend'] = $legend;
 		if ( ! empty($attributes['legend']))
@@ -224,7 +224,7 @@ class Form_Instance
 		$tag = ! empty($attributes['tag']) ? $attributes['tag'] : 'input';
 		unset($attributes['tag']);
 
-		return html_tag($tag, $this->attr_to_string($attributes));
+		return Html::html_tag($tag, $this->attr_to_string($attributes));
 	}
 
 	/**
@@ -402,7 +402,7 @@ class Form_Instance
 			$value = isset($value) ? $value :  $attributes['name'];
 		}
 
-		return html_tag('button', $this->attr_to_string($attributes), $value);
+		return Html::html_tag('button', $this->attr_to_string($attributes), $value);
 	}
 
 	/**
@@ -487,7 +487,7 @@ class Form_Instance
 			$attributes['id'] = $this->get_config('auto_id_prefix', '').$attributes['name'];
 		}
 
-		return html_tag('textarea', $this->attr_to_string($attributes), $value);
+		return Html::html_tag('textarea', $this->attr_to_string($attributes), $value);
 	}
 
 	/**
@@ -547,7 +547,7 @@ class Form_Instance
 				{
 					$optgroup = $listoptions($val, $selected, $level + 1);
 					$optgroup .= str_repeat("\t", $level);
-					$input .= str_repeat("\t", $level).html_tag('optgroup', array('label' => $key , 'style' => 'text-indent: '.(10*($level-1)).'px;'), $optgroup).PHP_EOL;
+					$input .= str_repeat("\t", $level).Html::html_tag('optgroup', array('label' => $key , 'style' => 'text-indent: '.(10*($level-1)).'px;'), $optgroup).PHP_EOL;
 				}
 				else
 				{
@@ -558,7 +558,7 @@ class Form_Instance
 						$current_obj->prep_value($opt_attr['value']) : $opt_attr['value'];
 					$val = ($current_obj->get_config('prep_value', true) && empty($attributes['dont_prep'])) ?
 						$current_obj->prep_value($val) : $val;
-					$input .= html_tag('option', $opt_attr, $val).PHP_EOL;
+					$input .= Html::html_tag('option', $opt_attr, $val).PHP_EOL;
 				}
 			}
 			unset($attributes['dont_prep']);
@@ -580,7 +580,7 @@ class Form_Instance
 			$attributes['name'] .= '[]';
 		}
 
-		return html_tag('select', $this->attr_to_string($attributes), $input);
+		return Html::html_tag('select', $this->attr_to_string($attributes), $input);
 	}
 
 	/**
@@ -608,7 +608,7 @@ class Form_Instance
 		unset($attributes['label']);
 		unset($attributes['id']);
 
-		return html_tag('label', $attributes, \Lang::get($label, array(), false) ?: $label);
+		return Html::html_tag('label', $attributes, \Lang::get($label, array(), false) ?: $label);
 	}
 
 	/**
@@ -635,7 +635,7 @@ class Form_Instance
 	protected function attr_to_string($attr)
 	{
 		unset($attr['label']);
-		return array_to_attr($attr);
+		return Html::array_to_attr($attr);
 	}
 
 	// fieldset related methods
