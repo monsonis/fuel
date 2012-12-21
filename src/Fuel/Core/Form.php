@@ -12,6 +12,8 @@
 
 namespace Fuel\Core;
 
+use Fuel\Core\Fieldset;
+use Fuel\Core\Form_Instance;
 /**
  * Form Class
  *
@@ -34,8 +36,6 @@ class Form
 	 */
 	public static function _init()
 	{
-		\Config::load('form', true);
-
 		static::$instance = static::forge('_default_', \Config::get('form'));
 	}
 
@@ -43,7 +43,7 @@ class Form
 	{
 		if (is_string($fieldset))
 		{
-			($set = \Fieldset::instance($fieldset)) and $fieldset = $set;
+			($set = Fieldset::instance($fieldset)) and $fieldset = $set;
 		}
 
 		if ($fieldset instanceof Fieldset)
@@ -54,7 +54,7 @@ class Form
 			}
 		}
 
-		return new \Form_Instance($fieldset, $config);
+		return new Form_Instance($fieldset, $config);
 	}
 
 	/**
@@ -65,7 +65,7 @@ class Form
 	 */
 	public static function instance($name = null)
 	{
-		$fieldset = \Fieldset::instance($name);
+		$fieldset = Fieldset::instance($name);
 		return $fieldset === false ? false : $fieldset->form();
 	}
 
