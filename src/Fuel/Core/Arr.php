@@ -59,7 +59,7 @@ class Arr
 			{
 				if ( ! is_array($array) or ! array_key_exists($key_part, $array))
 				{
-					return \Fuel::value($default);
+					return static::value($default);
 				}
 			}
 
@@ -873,4 +873,18 @@ class Arr
 		$values = array_filter($arr, 'is_array');
 		return $all_keys ? count($arr) === count($values) : count($values) > 0;
 	}
+
+	/**
+	 * Takes a value and checks if it is a Closure or not, if it is it
+	 * will return the result of the closure, if not, it will simply return the
+	 * value.
+	 *
+	 * @param   mixed  $var  The value to get
+	 * @return  mixed
+	 */
+	protected static function value($var)
+	{
+		return ($var instanceof \Closure) ? $var() : $var;
+	}
+
 }
