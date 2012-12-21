@@ -12,6 +12,9 @@
 
 namespace Fuel\Core;
 
+use Fuel\Core\Fieldset;
+use Fuel\Core\Html;
+
 /**
  * Form Class
  *
@@ -48,7 +51,7 @@ class Form_Instance
 		}
 		else
 		{
-			$this->fieldset = \Fieldset::forge($fieldset, array('form_instance' => $this));
+			$this->fieldset = Fieldset::forge($fieldset, array('form_instance' => $this));
 		}
 
 		foreach ($config as $key => $val)
