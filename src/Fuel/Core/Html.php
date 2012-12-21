@@ -133,7 +133,7 @@ class Html
 
 		$subject and $subject = '?subject='.$subject;
 
-		$attr = array_to_attr($attr);
+		$attr = static::array_to_attr($attr);
 		$attr = ($attr == '' ? '' : ' ').$attr;
 
 		$output = '<script type="text/javascript">';
@@ -293,16 +293,47 @@ class Html
 	 * @param	string|bool		The content to place in the tag, or false for no closing tag
 	 * @return	string
 	 */
-	protected static function html_tag($tag, $attr = array(), $content = false)
+	public static function html_tag($tag, $attr = array(), $content = false)
 	{
 		$has_content = (bool) ($content !== false and $content !== null);
 		$html = '<'.$tag;
 
-		$html .= ( ! empty($attr)) ? ' '.(is_array($attr) ? array_to_attr($attr) : $attr) : '';
+		$html .= ( ! empty($attr)) ? ' '.(is_array($attr) ? static::array_to_attr($attr) : $attr) : '';
 		$html .= $has_content ? '>' : ' />';
 		$html .= $has_content ? $content.'</'.$tag.'>' : '';
 
 		return $html;
+	}
+
+	/**
+	 * Takes an array of attributes and turns it into a string for an html tag
+	 *
+	 * @param	array	$attr
+	 * @return	string
+	 */
+	public static function array_to_attr($attr)
+	{
+		$attr_str = '';
+
+		foreach ((array) $attr as $property => $value)
+		{
+			// Ignore empty values (null/false/[empty string])
+			if ($value !== 0 and empty($value))
+			{
+				continue;
+			}
+
+			// If the key is numeric then it must be something like selected="selected"
+			if (is_numeric($property))
+			{
+				$property = $value;
+			}
+
+			$attr_str .= $property.'="'.$value.'" ';
+		}
+
+		// We strip off the last space for return
+		return trim($attr_str);
 	}
 
 }
