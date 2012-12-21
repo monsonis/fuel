@@ -171,7 +171,7 @@ class Fieldset
 
 		if (empty($this->validation) and $instance === true)
 		{
-			$this->validation = \Validation::forge($this);
+			$this->validation = Validation::forge($this);
 		}
 
 		return $this->validation;
@@ -193,7 +193,7 @@ class Fieldset
 
 		if (empty($this->form) and $instance === true)
 		{
-			$this->form = \Form::forge($this);
+			$this->form = Form::forge($this);
 		}
 
 		return $this->form;
@@ -305,11 +305,10 @@ class Fieldset
 		// Check if it exists already, if so: return and give notice
 		if ($field = $this->field($name))
 		{
-			\Error::notice('Field with this name exists already in this fieldset: "'.$name.'".');
-			return $field;
+			throw new \RuntimeException('Field with this name exists already in this fieldset: "'.$name.'".');
 		}
 
-		$this->fields[$name] = new \Fieldset_Field($name, $label, $attributes, $rules, $this);
+		$this->fields[$name] = new Fieldset_Field($name, $label, $attributes, $rules, $this);
 
 		return $this->fields[$name];
 	}
@@ -331,7 +330,7 @@ class Fieldset
 		// Remove from tail and reinsert at correct location
 		unset($this->fields[$field->name]);
 
-		if ( ! \Arr::insert_before_key($this->fields, array($name => $field), $fieldname, true))
+		if ( ! Arr::insert_before_key($this->fields, array($name => $field), $fieldname, true))
 		{
 			throw new \RuntimeException('Field "'.$fieldname.'" does not exist in this Fieldset. Field "'.$name.'" can not be added.');
 		}
@@ -355,7 +354,7 @@ class Fieldset
 
 		// Remove from tail and reinsert at correct location
 		unset($this->fields[$field->name]);
-		if ( ! \Arr::insert_after_key($this->fields, array($name => $field), $fieldname, true))
+		if ( ! Arr::insert_after_key($this->fields, array($name => $field), $fieldname, true))
 		{
 			throw new \RuntimeException('Field "'.$fieldname.'" does not exist in this Fieldset. Field "'.$name.'" can not be added.');
 		}
@@ -382,7 +381,7 @@ class Fieldset
 			$fields = $this->fields;
 			foreach ($this->fieldset_children as $fs_name => $fieldset)
 			{
-				\Arr::insert_after_key($fields, $fieldset->field(null, true), $fs_name);
+				Arr::insert_after_key($fields, $fieldset->field(null, true), $fs_name);
 				unset($fields[$fs_name]);
 			}
 			return $fields;
@@ -445,7 +444,7 @@ class Fieldset
 			}
 			else
 			{
-				\Arr::set($this->config, $key, $value);
+				Arr::set($this->config, $key, $value);
 			}
 		}
 
@@ -482,7 +481,7 @@ class Fieldset
 		}
 		else
 		{
-			return \Arr::get($this->config, $key, $default);
+			return Arr::get($this->config, $key, $default);
 		}
 	}
 
