@@ -84,7 +84,7 @@ class Validation_Error extends \Exception
 			}
 			if ($msg === false)
 			{
-				$msg = \Lang::get('validation.'.$this->rule) ?: \Lang::get('validation.'.\Arr::get(explode(':', $this->rule), 0));
+				$msg = \Lang::get('fuelvalidation.'.$this->rule) ?: \Lang::get('fuelvalidation.'.Arr::get(explode(':', $this->rule), 0));
 			}
 		}
 		if ($msg == false)
