@@ -317,12 +317,6 @@ class Html
 
 		foreach ((array) $attr as $property => $value)
 		{
-			// Ignore empty values (null/false/[empty string])
-			if ($value !== 0 and empty($value))
-			{
-				continue;
-			}
-
 			// If the key is numeric then it must be something like selected="selected"
 			if (is_numeric($property))
 			{
