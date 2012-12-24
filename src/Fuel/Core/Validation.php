@@ -47,7 +47,7 @@ class Validation
 	{
 		if (is_string($fieldset))
 		{
-			($set = \Fieldset::instance($fieldset)) and $fieldset = $set;
+			($set = Fieldset::instance($fieldset)) and $fieldset = $set;
 		}
 
 		if ($fieldset instanceof Fieldset)
@@ -63,7 +63,7 @@ class Validation
 
 	public static function instance($name = null)
 	{
-		$fieldset = \Fieldset::instance($name);
+		$fieldset = Fieldset::instance($name);
 		return $fieldset === false ? false : $fieldset->validation();
 	}
 
@@ -145,7 +145,7 @@ class Validation
 		}
 		else
 		{
-			$this->fieldset = \Fieldset::forge($fieldset, array('validation_instance' => $this));
+			$this->fieldset = Fieldset::forge($fieldset, array('validation_instance' => $this));
 		}
 
 		$this->callables = array($this);
@@ -329,7 +329,7 @@ class Validation
 	 */
 	public function run($input = null, $allow_partial = false, $temp_callables = array())
 	{
-		if (is_null($input) and \Input::method() != 'POST')
+		if (is_null($input) and \Request::getMethod() != 'POST')
 		{
 			return false;
 		}
@@ -372,7 +372,7 @@ class Validation
 				}
 				if (strpos($name, '.') !== false)
 				{
-					\Arr::set($this->validated, $name, $value);
+					Arr::set($this->validated, $name, $value);
 				}
 				else
 				{
@@ -477,7 +477,7 @@ class Validation
 
 		if ($output === false && $value !== false)
 		{
-			throw new \Validation_Error($field, $value, $rule, $params);
+			throw new Validation_Error($field, $value, $rule, $params);
 		}
 		elseif ($output !== true)
 		{
@@ -503,11 +503,11 @@ class Validation
 		{
 			if (strpos($key,'[') !== false)
 			{
-				$this->input[$key] =  $this->global_input_fallback ? \Arr::get(\Input::param(), str_replace(array('[', ']'),array('.', ''),$key), $default) : $default;
+				$this->input[$key] =  $this->global_input_fallback ? Arr::get(\Input::get(), str_replace(array('[', ']'),array('.', ''),$key), $default) : $default;
 			}
 			else
 			{
-				$this->input[$key] =  $this->global_input_fallback ? \Input::param($key, $default) : $default;
+				$this->input[$key] =  $this->global_input_fallback ? \Input::get($key, $default) : $default;
 			}
 		}
 
@@ -722,7 +722,7 @@ class Validation
 		if ($this->input($field) !== $val)
 		{
 			$validating = $this->active_field();
-			throw new \Validation_Error($validating, $val, array('match_field' => array($field)), array($this->field($field)->label));
+			throw new Validation_Error($validating, $val, array('match_field' => array($field)), array($this->field($field)->label));
 		}
 
 		return true;
@@ -921,7 +921,7 @@ class Validation
 	  if ( ! $this->_empty($this->input($field)) and $this->_empty($val))
 	  {
 			$validating = $this->active_field();
-			throw new \Validation_Error($validating, $val, array('required_with' => array($this->field($field))), array($this->field($field)->label));
+			throw new Validation_Error($validating, $val, array('required_with' => array($this->field($field))), array($this->field($field)->label));
 	  }
 
 	  return true;
