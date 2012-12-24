@@ -10,11 +10,18 @@
  * @link       http://fuelphp.com
  */
 
-namespace Fuel\Core;
+namespace Monsonis\Fuel;
 
-
+use Monsonis\Fuel\Arr;
+use Monsonis\Fuel\Validation_Error;
 
 // ------------------------------------------------------------------------
+
+/**
+ * Do we have access to mbstring?
+ * We need this in order to work with UTF-8 strings
+ */
+define('MBSTRING', function_exists('mb_get_info'));
 
 /**
  * Validation
@@ -450,7 +457,6 @@ class Validation
 					: (is_object(@$callback[0])
 						? get_class(@$callback[0]).'->'.@$callback[1]
 						: @$callback[0].'::'.@$callback[1]);
-			\Error::notice('Invalid rule "'.$string.'" passed to Validation, not used.');
 			return false;
 		}
 	}

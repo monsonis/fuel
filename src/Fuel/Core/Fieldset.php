@@ -10,7 +10,7 @@
  * @link       http://fuelphp.com
  */
 
-namespace Fuel\Core;
+namespace Monsonis\Fuel;
 
 
 

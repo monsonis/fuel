@@ -10,10 +10,10 @@
  * @link       http://fuelphp.com
  */
 
-namespace Fuel\Core;
+namespace Monsonis\Fuel;
 
-use Fuel\Core\Fieldset;
-use Fuel\Core\Form_Instance;
+use Monsonis\Fuel\Fieldset;
+use Monsonis\Fuel\Form_Instance;
 /**
  * Form Class
  *

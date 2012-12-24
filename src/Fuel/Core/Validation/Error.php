@@ -10,9 +10,10 @@
  * @link       http://fuelphp.com
  */
 
-namespace Fuel\Core;
+namespace Monsonis\Fuel;
 
-
+use Monsonis\Fuel\Fieldset_Field;
+use Monsonis\Fuel\Arr;
 
 /**
  * Validation error
