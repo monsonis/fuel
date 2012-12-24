@@ -26,14 +26,6 @@ class Validation_Error extends \Exception
 {
 
 	/**
-	 * Load validation Language file when errors are thrown
-	 */
-	public static function _init()
-	{
-		\Lang::load('validation', true);
-	}
-
-	/**
 	 * @var  Fieldset_Field  the field that caused the error
 	 */
 	public $field;
