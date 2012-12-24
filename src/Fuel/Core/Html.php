@@ -44,7 +44,7 @@ class Html
 		if ( ! preg_match('#^(\w+://|javascript:|\#)# i', $href))
 		{
 			$urlparts = explode('?', $href, 2);
-			$href = \Uri::create($urlparts[0], array(), isset($urlparts[1])?$urlparts[1]:array(), $secure);
+			$href = \URL::to($urlparts[0], array(), isset($urlparts[1])?$urlparts[1]:array(), $secure);
 		}
 		elseif ( ! preg_match('#^(javascript:|\#)# i', $href) and  is_bool($secure))
 		{
@@ -72,7 +72,7 @@ class Html
 	{
 		if ( ! preg_match('#^(\w+://)# i', $src))
 		{
-			$src = \Uri::base(false).$src;
+			$src = \URL::asset(false).$src;
 		}
 		$attr['src'] = $src;
 		$attr['alt'] = (isset($attr['alt'])) ? $attr['alt'] : pathinfo($src, PATHINFO_FILENAME);
