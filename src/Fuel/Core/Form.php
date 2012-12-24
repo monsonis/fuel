@@ -34,7 +34,7 @@ class Form
 	 *
 	 * @return  void
 	 */
-	public static function _init()
+	public static function init()
 	{
 		static::$instance = static::forge('_default_', \Config::get('form'));
 	}
@@ -299,3 +299,5 @@ class Form
 	}
 
 }
+
+Form::init();
