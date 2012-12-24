@@ -1,0 +1,17 @@
+{
+    "name": "monsonis/fuel",
+    "description": "Port some useful FuelPHP core classes (Form, Fieldset, Validation, Arr, Html) to work with Laravel 4",
+    "authors": [
+        {
+            "name": "Vicente Monsonis",
+            "email": "monsonis@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+    },
+    "autoload": {
+        "psr-0": {"Monsonis\\Fuel": "src/"}
+    },
+    "minimum-stability": "dev"
+}
