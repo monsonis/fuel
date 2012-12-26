@@ -924,12 +924,13 @@ class Validation
 	public function _validation_required_with($val, $field)
 	{
 
-	  if ( ! $this->_empty($this->input($field)) and $this->_empty($val))
-	  {
+		if ( ! $this->_empty($this->input($field)) and $this->_empty($val))
+		{
 			$validating = $this->active_field();
 			throw new Validation_Error($validating, $val, array('required_with' => array($this->field($field))), array($this->field($field)->label));
-	  }
+		}
 
-	  return true;
+		return true;
 	}
+
 }
