@@ -702,14 +702,14 @@ class Form_Instance
 			{
 				$output[$k] = $this->fieldset->get_config($k, null) !== null
 					? $this->fieldset->get_config($k, $default)
-					: \Config::get('form.'.$k, $default);
+					: \Config::get('fuel::form.'.$k, $default);
 			}
 			return $output;
 		}
 
 		return $this->fieldset->get_config($key, null) !== null
 			? $this->fieldset->get_config($key, $default)
-			: \Config::get('form.'.$key, $default);
+			: \Config::get('fuel::form.'.$key, $default);
 	}
 
 	/**

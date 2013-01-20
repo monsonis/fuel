@@ -36,7 +36,7 @@ class Form
 	 */
 	public static function init()
 	{
-		static::$instance = static::forge('_default_', \Config::get('form'));
+		static::$instance = static::forge('_default_', \Config::get('fuel::form'));
 	}
 
 	public static function forge($fieldset = 'default', array $config = array())

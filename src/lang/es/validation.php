@@ -1,0 +1,25 @@
+<?php
+
+return array(
+	'required'      => 'El campo :label es obligatorio',
+	'not_empty'     => 'El campo :label es obligatorio',
+	'not_recursive' => 'La entrada :label NO puede pertececer a si misma',
+	'min_length'    => 'El campo :label debe contener al menos :param:1 caracteres',
+	'max_length'    => 'El campo :label no debe contener más de :param:1 caracteres',
+	'valid_email'   => 'El campo :label debe contener una dirección de correo válida',
+	'unique'        => 'El campo :label debe ser único, el valor :value ya ha sido usado',
+	'captcha'       => 'El valor del campo :label no es correcto',
+	'slug'          => 'El campo :label debe contener sólo letras en minúsculas sin tildes, números o guiones',
+	'date'          => 'El campo :label debe tener una fecha válida en formato dd/mm/yyyy',
+	'exact_length'  => 'El campo :label debe contener exactamente :param:1 caracteres.',
+	'match_value'   => 'El campo :label debe contener el valor :param:1.',
+	'match_pattern' => 'El campo :label must match the pattern :param:1.',
+	'match_field'   => 'El campo :label must match El campo :param:1.',
+	'valid_emails'  => 'El campo :label debe contener a list of valid email addresses.',
+	'valid_url'     => 'El campo :label debe contener una URL válida.',
+	'valid_ip'      => 'El campo :label debe contener una dirección IP válida.',
+	'numeric_min'   => 'El valor mínimo del campo :label debe ser :param:1',
+	'numeric_max'   => 'El valor máximo del campo :label debe ser :param:1',
+	'valid_string'  => 'La regla de cadena :rule(:param:1) ha fallado para el campo :label',
+	'required_with' => 'El campo :label debe contener un valor si :param:1 tiene un valor.',
+);
